@@ -2,13 +2,12 @@
   "name": "Riptide",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Fog Network",
   "dependencies": {
     "acorn-hammerhead": "^0.5.0",
     "body-parser": "^1.19.0",

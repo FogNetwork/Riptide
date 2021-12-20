@@ -14,7 +14,3 @@ function go() {
     search.value = ""
     }
 }
-
-function showsettings() {
-    
-}

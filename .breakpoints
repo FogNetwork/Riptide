@@ -1,0 +1,20 @@
+{
+  "files": {
+    "lib/html.js": [
+      {
+        "id": "78ec24a8-6075-47fe-acd9-c96f8f84ce96",
+        "line": 114,
+        "version": 63,
+        "index": 4786
+      }
+    ],
+    "public/style.css": [
+      {
+        "id": "767bf4aa-ca67-4fa9-aa0b-eba59dea52b9",
+        "line": 157,
+        "version": 710,
+        "index": 2334
+      }
+    ]
+  }
+}
