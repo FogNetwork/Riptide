@@ -22,6 +22,16 @@ npm start
 - Inspect Element (Avo)
 - Tab name
 
+## To Do
+- Better Homepage
+- About
+- Extensions
+- Settings
+- Tab Right Click
+- History
+- Omnibox suggestions
+- PWA
+- Bookmarks?
 
 ## Discord
 You can find our discord server [here](https://discord.gg/yk33HZSZkU)

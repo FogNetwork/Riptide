@@ -6,11 +6,12 @@
 
 body {
   background: #202124;
+  overflow: hidden;
 }
 
 #web {
   position: fixed;
-  top: 55px;
+  top: 77px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -20,10 +21,10 @@ body {
 }
 
 .urlbar {
-  background: #202124;
-  height: 55px;
+  background: #2493ff;
+  height: 37px;
   position: fixed;
-  top: 0;
+  top: 40px;
   left: 0;
   right: 0;
   display: flex;
@@ -33,16 +34,15 @@ body {
 .search {
   background: #2493ff;
   color: black;
-  height: 43px;
-  margin-top: 5px;
+  height: 26px;
   outline: none;
-  border: none;
   width: 100%;
   padding-left: 10px;
   transition: 0.3s;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  font-size: 20px;
+  font-size: 15px;
+  border: 2px solid black;
+  border-radius: 25px;
+  margin: 2px;
 }
 
 .material-icons-outlined {
@@ -91,60 +91,34 @@ body {
   color: transparent;
 }
 
-#title {
-  color: black;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 200px;
-  text-overflow: ellipsis;
-  padding: 5px;
-  font-size: 20px;
-}
-
 .navcontrols {
   display: flex;
   align-items: center;
   background: #2493ff;
-  margin-top: 5px;
   margin-bottom: 5px;
-  margin-left: 5px;
-  border-radius: 2.5px 0 0 2.5px;
-  border-right: 1px solid black;
-}
-
-.navtab {
-  display: flex;
-  align-items: center;
-  background: #2493ff;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
+  height: 37px;
 }
 
 .morebtn {
   background: #2493ff;
   color: black;
-  height: 45px;
-  margin-top: 5px;
+  height: 37px;
   outline: none;
   border: none;
-  border-radius: 0 2.5px 2.5px 0;
-  width: 55px;
+  width: 28px;
   transition: 0.3s;
-  margin-right: 5px;
-  font-size: 20px;
-  border-left: 1px solid black;
   cursor: pointer;
+  font-weight: bold;
+  font-size: large;
 }
 
 #more {
   position: fixed;
-  top: 55px;
+  top: 82px;
   right: 5px;
   background: #2493ff;
   width: 200px;
-  height: 300px;
+  height: 292px;
   z-index: 15;
   border-radius: 5px;
 }
@@ -152,7 +126,7 @@ body {
 .moreitem {
   color: black;
   padding: 5px;
-  text-align: center;
+  text-align: left;
   cursor: pointer;
 }
 
@@ -160,6 +134,78 @@ body {
   border-radius: 5px 5px 0 0;
 }
 
+.homeexit {
+  border-radius: 0 0 5px 5px;
+}
+
 .moreitem:hover {
   background: #5db0ff;
+}
+
+#tabs {
+  display: flex;
+  position: fixed;
+  right: 5px;
+  left: 5px;
+  top: 5px;
+}
+
+.tab {
+  background: darkslategray;
+  margin: 5px;
+  width: 200px;
+  height: 30px;
+  color: #9ca1a7;
+  line-height: 30px;
+  border-radius: 5px 5px 0 0;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.closetab {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+  height: 30px;
+  width: 20px;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  border-radius: 0 5px 5px 0;
+  background: darkslategray;
+  font-size: 15px;
+}
+
+.newtab {
+  user-select: none;
+  background: #2493ff;
+  margin: 5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  border-style: initial;
+  color: black;
+  flex-shrink: 0;
+  font-size: 15px;
+  line-height: 25px;
+}
+
+.fa-xmark {
+  height: 100%;
+  line-height: 30px;
+}
+
+.activetab {
+  background: #2493ff;
+  color: black;
+}
+
+.tabtext {
+  display: inline-block;
+  width: 100%;
+  padding-left: 5px;
+  box-sizing: border-box;
 }

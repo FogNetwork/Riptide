@@ -1,20 +1,21 @@
 function updateweb() {
 var search  = document.getElementById("search")
 var web = document.getElementById("web")
-var title = document.getElementById("title")
 
 if (web.contentWindow.location == window.location.protocol + "//" + window.location.hostname + "/home/") {
 search.value = ""
+seturl("/home")
 } else {
 var fullurl = web.contentWindow.location.href
 search.value = fullurl.split('/service/')[1]
+seturl(fullurl.split('/service/')[1])
 }
 
 if (web.contentWindow.document.title !== "") {
-title.innerText = web.contentWindow.document.title
+settitle(web.contentWindow.document.title)
 } else {
 var fullurl = web.contentWindow.location.href
-title.innerText = fullurl.split('/service/')[1]
+settitle(fullurl.split('/service/')[1])
 }
 }
 
@@ -39,22 +40,15 @@ var web = document.getElementById("web")
 web.src = "/home"
 }
 
-function homemore() {
+function setweb(url) {
 var web = document.getElementById("web")
-web.src = "/home" 
-
-var more = document.getElementById("more")
-var morebtn = document.getElementById("morebtn")
-if (more.style.display == "initial") {
-    more.style.display = "none"
-    morebtn.classList.remove("morebtnactive")
+var search = url
+if (!url) search = document.getElementById("search").value
+if (search !== "/home" && search !== "/home/") {
+web.src = "/service/gateway?url=" + search
+} else {
+web.src = "/home"
 }
-}
-
-function setweb() {
-var web = document.getElementById("web")
-var search  = document.getElementById("search")
-web.src = "/service/gateway?url=" + search.value
 }
 
 window.onload = function() {
@@ -96,4 +90,164 @@ var morebtn = document.getElementById("morebtn")
 function fullscreen() {
   var web = document.getElementById("web")
   web.requestFullscreen()
+}
+
+function fullscreenwindow() {
+  var html = document.getElementsByTagName("html")[0]
+  html.requestFullscreen()
+}
+
+//tabs
+
+$("#tabs").sortable({
+items: ".tab",
+cancel: ".tab:last-child",
+axis: "x",
+handle: ".tabtext",
+containment: "body",
+scroll: false,
+start: function(event, ui) {
+//Old fix
+//ui.item[0].style.top = "8px"
+}
+})
+
+function newtab() {
+var tabs = document.getElementById("tabs")
+var ntabs = document.querySelectorAll("div[class='tab']").length
+
+if (ntabs < 17) {
+
+var tab = document.createElement("div")
+tab.className = "tab"
+tab.setAttribute("url", "/home")
+
+var tabtext = document.createElement("div")
+tabtext.innerText = "New Tab"
+tabtext.className = "tabtext"
+tabtext.setAttribute("onmousedown", "tabclicked(this)")
+tab.appendChild(tabtext)
+
+var closetab = document.createElement("div")
+closetab.className = "closetab"
+closetab.innerHTML = '<i class="fa-solid fa-xmark"></i>'
+closetab.setAttribute("onclick", "removetab(this.parentElement)")
+
+tab.appendChild(closetab)
+
+tabs.insertBefore(tab, tabs.childNodes[tabs.childNodes.length - 2])
+
+activetab(tab.childNodes[0])
+var search = document.getElementById("search")
+search.value = ""
+
+var web = document.getElementById("web")
+web.src = "/home"
+}
+}
+
+function removetab(element) {
+var tabs = document.getElementById("tabs")
+if (element.className == "tab activetab") {
+if (tabs.children[Array.prototype.indexOf.call(element.parentNode.children, element) + 1].className !== "newtab") {
+activetab(tabs.children[Array.prototype.indexOf.call(element.parentNode.children, element) + 1].firstChild)
+} else if (tabs.childNodes.length !== 5) {
+activetab(tabs.children[Array.prototype.indexOf.call(element.parentNode.children, element) - 1].firstChild)
+}
+}
+element.remove()
+if (tabs.childNodes.length == 4) return window.close()
+}
+
+function activetab(element) {
+var activetabs = document.querySelectorAll("div[class = 'tab activetab']")
+var activetabs2 = document.querySelectorAll("div[class = 'closetab activetab']")
+
+for (elem in activetabs) {
+activetabs[elem].className = "tab"
+}
+
+for (elem in activetabs2) {
+activetabs2[elem].className = "closetab"
+}
+
+element.parentElement.className = "tab activetab"
+element.parentElement.childNodes[1].className = "closetab activetab"
+}
+
+function currenttab() {
+return document.querySelectorAll("div[class='tab activetab']")[0];
+}
+
+function settitle(text) {
+currenttab().firstChild.innerText = text
+}
+
+function seturl(url) {
+currenttab().setAttribute("url", url)
+}
+
+function geturl() {
+return currenttab().getAttribute("url")
+}
+
+document.addEventListener('keydown', function(e){
+//Ctrl + Y: New Tab
+if (e.ctrlKey && e.keyCode == 89) {
+newtab()
+//Ctrl + Q: Close Tab
+} else if (e.ctrlKey && e.keyCode == 81) {
+removetab(currenttab())
+}
+});
+
+//Ctrl + P: Print
+jQuery(document).bind("keyup keydown", function(e){
+if(e.ctrlKey && e.keyCode == 80){
+var web = document.getElementById("web")
+web.contentWindow.focus()
+web.contentWindow.print()
+return false;
+}
+});
+
+//Ctrl + R: Reload
+jQuery(document).bind("keyup keydown", function(e){
+if(e.ctrlKey && e.keyCode == 82){
+var web = document.getElementById("web")
+web.contentWindow.location.reload()
+return false;
+}
+});
+
+function tabclicked(element) {
+if (element.parentElement.className !== "tab activetab") {
+setweb(geturl())
+}
+activetab(element)
+}
+
+function riptideclick() {
+var more = document.getElementById("more")
+var morebtn = document.getElementById("morebtn")
+if (window.event.srcElement.id !== "more" && window.event.srcElement.id !== "morebtn") {
+if (more.style.display == "initial")
+more.style.display = "none"
+morebtn.classList.remove("morebtnactive")
+}
+}
+
+document.onclick = riptideclick
+
+window.addEventListener("load", function () {
+var web = document.getElementById("web")
+web.contentWindow.addEventListener("mousedown", function () {
+window.parent.riptideclick()
+})
+})
+
+function printweb() {
+var web = document.getElementById("web")
+web.contentWindow.focus()
+web.contentWindow.print()
 }

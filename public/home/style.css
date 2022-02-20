@@ -10,13 +10,13 @@ body {
 
 .title {
   margin: 0;
-  margin-top: 100px;
+  margin-top: 220px;
   font-size: 80px;
   color: #2493ff;
 }
 
 .searchbox {
-  margin-top: 29px;
+  margin-top: 50px;
 }
 
 .searchicon {
@@ -44,16 +44,6 @@ body {
 
 #search:focus {
   box-shadow: 0 1px 6px 0 #171717;
-}
-
-.footer {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin-bottom: 5px;
-  color: #70757a;
 }
 
 ::-webkit-scrollbar {
