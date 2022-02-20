@@ -31,6 +31,7 @@ npm start
 - History
 - Omnibox suggestions
 - PWA
+- Fix Screenshot
 - Bookmarks?
 
 ## Discord
