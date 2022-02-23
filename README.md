@@ -32,6 +32,7 @@ npm start
 - Omnibox suggestions
 - PWA
 - Fix Screenshot
+- Favicon In Tabs
 - Bookmarks?
 
 ## Discord

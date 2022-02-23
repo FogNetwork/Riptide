@@ -1,21 +1,20 @@
 const port = 8080
 const express = require('express');
 const app = express();
-const Corrosion = require('./lib/server')
+const Rhodium = require("./lib/main/bundle")
 
-const proxy = new Corrosion({
-    prefix: "/service/",
-    codec: "plain",
-    forceHttps: true,
-    title: false,
-    requestMiddleware: [
-        Corrosion.middleware.blacklist([
-            'accounts.google.com',
-        ], 'Page is blocked'),
-    ]
+var proxy = new Rhodium({
+  prefix: "/service/",
+  encode: "plain",
+  server: app,
+  title: "Ripiide",
+  favicon: "https://discord.com",
+  wss: true,
+  corrosion: [false, {}],
+  userAgent: undefined
 });
 
-proxy.bundleScripts();
+proxy.init();
 
 app.use(express.static('./public'))
 

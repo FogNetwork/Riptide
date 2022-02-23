@@ -2,9 +2,12 @@ function updateweb() {
 var search  = document.getElementById("search")
 var web = document.getElementById("web")
 
-if (web.contentWindow.location == window.location.protocol + "//" + window.location.hostname + "/home/") {
+if (web.contentWindow.location == window.location.protocol + "//" + window.location.hostname + "/pages/home/") {
 search.value = ""
-seturl("/home")
+seturl("/pages/home")
+} else if (web.contentWindow.location == window.location.protocol + "//" + window.location.hostname + "/pages/about/") {
+search.value = "riptide://about"
+seturl("/pages/about")
 } else {
 var fullurl = web.contentWindow.location.href
 search.value = fullurl.split('/service/')[1]
@@ -37,17 +40,17 @@ web.contentWindow.location.reload()
 
 function home() {
 var web = document.getElementById("web")
-web.src = "/home"
+web.src = "/pages/home"
 }
 
 function setweb(url) {
 var web = document.getElementById("web")
 var search = url
 if (!url) search = document.getElementById("search").value
-if (search !== "/home" && search !== "/home/") {
-web.src = "/service/gateway?url=" + search
+if (search == "/pages/home" || search == "/pages/home/") {
+web.src = "/pages/home"
 } else {
-web.src = "/home"
+web.src = "/service/" + search
 }
 }
 
@@ -120,7 +123,7 @@ if (ntabs < 17) {
 
 var tab = document.createElement("div")
 tab.className = "tab"
-tab.setAttribute("url", "/home")
+tab.setAttribute("url", "/pages/home")
 
 var tabtext = document.createElement("div")
 tabtext.innerText = "New Tab"
@@ -142,7 +145,7 @@ var search = document.getElementById("search")
 search.value = ""
 
 var web = document.getElementById("web")
-web.src = "/home"
+web.src = "/pages/home"
 }
 }
 
@@ -222,7 +225,7 @@ return false;
 
 function tabclicked(element) {
 if (element.parentElement.className !== "tab activetab") {
-setweb(geturl())
+setweb(element.parentElement.getAttribute("url"))
 }
 activetab(element)
 }
