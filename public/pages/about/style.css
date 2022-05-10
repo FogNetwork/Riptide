@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  font-family: Roboto;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  margin-bottom: 3%;
+}
+
+h2 {
+  text-align: center;
+  color: white;
+  margin-bottom: 3%;
+}
+
+h3 {
+  text-align: center;
+  color: white;
+  margin-bottom: 3%;
+}
