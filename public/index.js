@@ -7,7 +7,7 @@ search.value = ""
 seturl("/pages/home")
 } else if (web.contentWindow.location == window.location.protocol + "//" + window.location.hostname + "/pages/about/") {
 search.value = "riptide://about"
-seturl("/pages/about")
+seturl("/pages/home")
 } else {
 var fullurl = web.contentWindow.location.href
 search.value = fullurl.split('/service/')[1]
@@ -47,8 +47,8 @@ function setweb(url) {
 var web = document.getElementById("web")
 var search = url
 if (!url) search = document.getElementById("search").value
-if (search == "/pages/home" || search == "/pages/home/") {
-web.src = "/pages/home"
+if (search == "/pages/home" || search == "/pages/about") {
+web.src = search
 } else {
 web.src = "/service/" + search
 }
